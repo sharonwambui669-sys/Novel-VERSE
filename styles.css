@@ -33,7 +33,7 @@ body {
 
 .nav-links a {
   text-decoration: none;
-  color: white;
+  color: rgb(101, 10, 10);
 }
 
 .hero {
@@ -50,4 +50,29 @@ body {
   text-decoration: none;
   border-radius: 5px;
 }
+
+.search-section {
+  padding: 2rem;
+  text-align: center;
+}
+
+#search {
+  width: 70%;
+  padding: 0.8rem;
+}
+
+.books-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+.book-card {
+  background: white;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
 
