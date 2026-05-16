@@ -80,3 +80,20 @@ if (searchInput) {
     const filtered = books.filter(book =>
       book.title.toLowerCase().includes(value)
     );
+    renderBooks(filtered);
+  });
+}
+
+// =====================
+// MOBILE MENU TOGGLE
+// =====================
+if (menuBtn && navLinks) {
+  menuBtn.addEventListener("click", () => {
+    navLinks.classList.toggle("show");
+  });
+}
+
+// =====================
+// INITIAL LOAD
+// =====================
+renderBooks();
