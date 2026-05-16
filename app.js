@@ -1,56 +1,58 @@
+// NOVELVERSE BOOK DATA
+// =====================
 const books = [
-  {
-    title: "Atomic Habits",
-    author: "James Clear",
-    price: 1200
-  },
-  {
-    title: "Rich Dad Poor Dad",
-    author: "Robert Kiyosaki",
-    price: 950
-  },
-  {
-    title: "Think and Grow Rich",
-    author: "Napoleon Hill",
-    price: 1100
-  }
+  { id: 1, title: "Atomic Habits", author: "James Clear" },
+  { id: 2, title: "Rich Dad Poor Dad", author: "Robert Kiyosaki" },
+  { id: 3, title: "Think and Grow Rich", author: "Napoleon Hill" },
+  { id: 4, title: "The Alchemist", author: "Paulo Coelho" }
 ];
 
-const booksContainer = document.querySelector(".books-container");
+// =====================
+// CART SYSTEM
+// =====================
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-function displayBooks() {
+// =====================
+// DOM ELEMENTS
+// =====================
+const container = document.querySelector(".books-container");
+const searchInput = document.querySelector("#search");
+const menuBtn = document.querySelector(".menu-btn");
+const navLinks = document.querySelector(".nav-links");
 
-  books.forEach(book => {
+// =====================
+// RENDER BOOKS
+// =====================
+function renderBooks(data = books) {
+  if (!container) return;
 
+  container.innerHTML = "";
+
+  data.forEach(book => {
     const card = document.createElement("div");
-
     card.classList.add("book-card");
 
     card.innerHTML = `
       <h3>${book.title}</h3>
       <p>${book.author}</p>
-      <span>Ksh ${book.price}</span>
-      <button>Add to Cart</button>
+      <button class="add-btn" data-id="${book.id}">Add to Cart</button>
     `;
 
-
-    booksContainer.appendChild(card);
+    container.appendChild(card);
   });
+
+  attachCartEvents();
 }
 
-if (booksContainer) {
-  displayBooks();
+// =====================
+// ADD TO CART FUNCTION
+// =====================
+function addToCart(id) {
+  const book = books.find(b => b.id === id);
+  if (!book) return;
+
+  cart.push(book);
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  alert(`${book.title} added to cart`);
 }
-
-const menuBtn = document.querySelector(".menu-btn");
-const navLinks = document.querySelector(".nav-links");
-
-if (menuBtn) {
-  menuBtn.addEventListener("click", () => {
-    navLinks.classList.toggle("show");
-  });
-}
-
-const searchInput = document.querySelector("#search");
-
-if (searchInput) {
