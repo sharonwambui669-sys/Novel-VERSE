@@ -56,3 +56,27 @@ function addToCart(id) {
 
   alert(`${book.title} added to cart`);
 }
+// =====================
+// ATTACH BUTTON EVENTS
+// =====================
+function attachCartEvents() {
+  const buttons = document.querySelectorAll(".add-btn");
+
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const id = Number(btn.getAttribute("data-id"));
+      addToCart(id);
+    });
+  });
+}
+
+// =====================
+// SEARCH FUNCTIONALITY
+// =====================
+if (searchInput) {
+  searchInput.addEventListener("input", (e) => {
+    const value = e.target.value.toLowerCase();
+
+    const filtered = books.filter(book =>
+      book.title.toLowerCase().includes(value)
+    );
